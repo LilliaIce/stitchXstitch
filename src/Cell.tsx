@@ -36,21 +36,30 @@ export default function Cell({
     <g
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
-      onMouseDown={(e) => onMouseDown(e)}
-      onMouseUp={(e) => onMouseUp(e)}
-      onMouseMove={(e) => onMouseMove(e)}
+      onMouseDown={(e) => {
+        e.stopPropagation()
+        onMouseDown(e)
+      }}
+      onMouseUp={(e) => {
+        e.stopPropagation()
+        onMouseUp(e)
+      }}
+      onMouseMove={(e) => {
+        e.stopPropagation()
+        onMouseMove(e)
+      }}
     >
       <rect
         x={x1}
         y={y1}
         width={10}
         height={10}
-        fill={isSelected ? 'blue' : color}
+        fill={isSelected ? 'lightblue' : color}
       />
-      <line x1={x1} y1={y1} x2={x1} y2={y2} stroke={isHovered ? 'darkblue' : 'black'} />
-      <line x1={x2} y1={y1} x2={x2} y2={y2} stroke={isHovered ? 'darkblue' : 'black'} />
-      <line x1={x1} y1={y1} x2={x2} y2={y1} stroke={isHovered ? 'darkblue' : 'black'} />
-      <line x1={x1} y1={y2} x2={x2} y2={y2} stroke={isHovered ? 'darkblue' : 'black'} />
+      <line x1={x1} y1={y1} x2={x1} y2={y2} stroke={isHovered ? 'red' : 'black'} />
+      <line x1={x2} y1={y1} x2={x2} y2={y2} stroke={isHovered ? 'red' : 'black'} />
+      <line x1={x1} y1={y1} x2={x2} y2={y1} stroke={isHovered ? 'red' : 'black'} />
+      <line x1={x1} y1={y2} x2={x2} y2={y2} stroke={isHovered ? 'red' : 'black'} />
       <text
         x={x1 + 5}
         y={y1 + 5}

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Graph from './Graph'
-import Cell from './Cell'
+import Toolbar from './Toolbar'
 
 interface CellPosition {
   x: number
@@ -28,7 +28,7 @@ export default function App() {
       ...prev,
       start: cell,
       end: cell,
-      isDragging: false,
+      isDragging: true,
     }))
   }
 
@@ -41,7 +41,7 @@ export default function App() {
   }
 
   const handleSelectionDrag = (cell: CellPosition, e: React.MouseEvent) => {
-    if (e.button === 1) {
+    if (selection.isDragging) {
       setSelection(prev => ({
         ...prev,
         end: cell,
@@ -62,6 +62,7 @@ export default function App() {
           onSelectionDrag={handleSelectionDrag}
         />
       </svg>
+      <Toolbar />
     </>
   )
 }

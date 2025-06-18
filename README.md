@@ -16,6 +16,24 @@ Actions:
     - Clear
     - Fill
     - Copy
+    - Cut
     - Paste
     - Outline
-    - Repeat
+    - Undo
+    - Redo
+
+
+TO-DO:
+* Center graph
+* Center symbols
+* Add header
+* Add footer
+* Process cell selection before user releases mouse
+    # Make selection box transparent
+# Add outline to selection box
+* Find color palette library
+* Number rows and columns
+* Import knitting symbols
+* Outline groups of 10 stitches
+* Only show transformations when there's an active selection
+* Add scrolling ability
