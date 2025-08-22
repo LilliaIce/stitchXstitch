@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Graph from './Graph'
 import Toolbar from './Toolbar'
+import RowColumnInput from './RowColumnInput'
 
 interface CellPosition {
   x: number
@@ -52,6 +53,15 @@ export default function App() {
 
   return (
     <>
+      <Toolbar />
+      <RowColumnInput 
+        value={rows}
+        onChange={(value) => setRows(value)}
+      />
+      <RowColumnInput 
+        value={columns}
+        onChange={(value) => setColumns(value)}
+      />
       <svg version="1.1">
         <Graph
           numRows={rows}
@@ -62,7 +72,6 @@ export default function App() {
           onSelectionDrag={handleSelectionDrag}
         />
       </svg>
-      <Toolbar />
     </>
   )
 }

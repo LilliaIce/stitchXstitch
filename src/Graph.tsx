@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useCallback } from 'react'
 import './App.css'
 import Cell from './Cell'
 
@@ -29,17 +29,18 @@ export default function Graph({
   onSelectionEnd,
   onSelectionDrag
 }: GraphProps) {
-  const xList: number[] = []
-  const yList: number[] = []
-  const selectCells: CellPosition[] = []
 
-  for (let i = 1; i <= numRows; i++) {
-    for (let j = 1; j <= numColumns; j++) {
-      xList.push(i * 10)
-      yList.push(j * 10)
-      selectCells.push({ x: i * 10, y: j * 10 })
+  const cells = useMemo(() => {
+    const cells = [];
+    for (let i = 1; i <= numRows; i++) {
+      for (let j = 1; j <= numColumns; j++) {
+        const cellX = i * 10;
+        const cellY = j * 10;
+        cells.push({ x: cellX, y: cellY });
+      }
     }
-  }
+    return cells;
+  }, [numRows, numColumns]);
 
   const isSelected = (cell: CellPosition): boolean => {
     if (!selection.start || !selection.end) return false
@@ -54,7 +55,7 @@ export default function Graph({
 
   return (
     <>
-      {selectCells.map((cell) => (
+      {cells.map((cell) => (
         <Cell
           key={`${cell.x},${cell.y}`}
           x={cell.x}

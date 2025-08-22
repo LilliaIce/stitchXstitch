@@ -54,18 +54,38 @@ export default function Cell({
         y={y1}
         width={10}
         height={10}
-        fill={isSelected ? 'lightblue' : color}
+        fill={color}
       />
-      <line x1={x1} y1={y1} x2={x1} y2={y2} stroke={isHovered ? 'red' : 'black'} />
-      <line x1={x2} y1={y1} x2={x2} y2={y2} stroke={isHovered ? 'red' : 'black'} />
-      <line x1={x1} y1={y1} x2={x2} y2={y1} stroke={isHovered ? 'red' : 'black'} />
-      <line x1={x1} y1={y2} x2={x2} y2={y2} stroke={isHovered ? 'red' : 'black'} />
+      {isSelected && (
+        <rect
+          x={x1}
+          y={y1}
+          width={10}
+          height={10}
+          fill="lightblue"
+          opacity={0.7}
+        />
+      )}
+      <>
+        <line x1={x1} y1={y1} x2={x1} y2={y2} stroke='black'/>
+        <line x1={x2} y1={y1} x2={x2} y2={y2} stroke='black'/>
+        <line x1={x1} y1={y1} x2={x2} y2={y1} stroke='black'/>
+        <line x1={x1} y1={y2} x2={x2} y2={y2} stroke='black'/>
+      </>
+      {isHovered && (
+        <>
+          <line x1={x1} y1={y1} x2={x1} y2={y2} stroke='red'/>
+          <line x1={x2} y1={y1} x2={x2} y2={y2} stroke='red'/>
+          <line x1={x1} y1={y1} x2={x2} y2={y1} stroke='red'/>
+          <line x1={x1} y1={y2} x2={x2} y2={y2} stroke='red'/>
+        </>
+      )}
       <text
         x={x1 + 5}
         y={y1 + 5}
         fontSize="15"
         textAnchor="middle"
-        fill={isHovered ? 'darkblue' : 'black'}
+        fill={isHovered ? 'lightblue' : 'black'}
       >
         {symbol}
       </text>
